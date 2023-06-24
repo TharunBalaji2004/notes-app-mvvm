@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.notesappmvvm.R
 import com.example.notesappmvvm.databinding.FragmentNoteListingBinding
+import com.example.notesappmvvm.util.UiState
 import com.example.notesappmvvm.viewmodel.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,10 +32,21 @@ class NoteListingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getNotes()
-        viewModel.notes.observe(viewLifecycleOwner) {
-            it.forEach {
-                Log.d(TAG, it.toString())
+        viewModel.notes.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is UiState.Loading -> {
+                    Log.d(TAG, "Loading...")
+                }
+                is UiState.Failure -> {
+                    Log.e(TAG, state.error.toString())
+                }
+                is UiState.Success -> {
+                    state.data.forEach {
+                        Log.d(TAG, it.toString())
+                    }
+                }
             }
+
         }
     }
 
