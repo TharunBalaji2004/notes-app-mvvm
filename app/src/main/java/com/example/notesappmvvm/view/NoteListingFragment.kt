@@ -1,6 +1,7 @@
 package com.example.notesappmvvm.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,12 @@ import androidx.fragment.app.activityViewModels
 import com.example.notesappmvvm.R
 import com.example.notesappmvvm.databinding.FragmentNoteListingBinding
 import com.example.notesappmvvm.viewmodel.NoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteListingFragment : Fragment() {
 
+    private val TAG: String = "NoteListingFragment"
     private lateinit var binding: FragmentNoteListingBinding
     val viewModel: NoteViewModel by activityViewModels()
 
@@ -28,7 +32,9 @@ class NoteListingFragment : Fragment() {
 
         viewModel.getNotes()
         viewModel.notes.observe(viewLifecycleOwner) {
-
+            it.forEach {
+                Log.d(TAG, it.toString())
+            }
         }
     }
 

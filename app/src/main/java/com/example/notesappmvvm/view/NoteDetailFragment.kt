@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import com.example.notesappmvvm.R
 import com.example.notesappmvvm.databinding.FragmentNoteDetailBinding
 import com.example.notesappmvvm.viewmodel.NoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteDetailBinding
