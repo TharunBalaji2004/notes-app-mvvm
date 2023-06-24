@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.notesappmvvm.R
 import com.example.notesappmvvm.databinding.FragmentNoteDetailBinding
+import com.example.notesappmvvm.viewmodel.NoteViewModel
 
 class NoteDetailFragment : Fragment() {
 
